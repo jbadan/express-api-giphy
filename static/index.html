@@ -18,23 +18,28 @@
     </script>
     <script>
       $('button').on('click', function(e) {
-      e.preventDefault();
-      var query = $('input').val();
-      $.get('/search/' + query).done(function(response){
-        var results = response.data;
-        for(i=0; i< results.length; i++){
-          addSearchResult(results[i].images.fixed_height.url);
-        }
-      })
-      $('h1').hide();
-    });
-
-    function addSearchResult(result) {
-      var image = $('<img />', {
-        src: result
+        e.preventDefault();
+        var query = $('input').val();
+        $('#display').empty();
+        $('h1').hide();
+        $.get('/search/' + query).done(function(response){
+          // var results = response.data;
+        //   console.log(response);
+        //   for(i=0; i< response.length; i++){
+        //     addSearchResult(results[i].images.fixed_height.url);
+        //   }
+        // })
+          $('#display').html(response);
+        });
       });
-      image.appendTo('#display');
-    }
+
+    // function addSearchResult(result) {
+    //   var image = $('<img />', {
+    //     src: result
+    //   });
+    //   image.appendTo('#display');
+    //   $('#display').html(data);
+    // }
     </script>
   </body>
 </html>
